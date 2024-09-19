@@ -1,2 +1,6 @@
-<label>Title</label>
-<input type="text" name="title" value="<%= movie.title %>">
+<label for="imdbID">imdb ID</label>
+<input type="text" name="imdbID">
+<label for="rating">Rating out of a 100</label>
+<input type="number" name="rating" value="<%= movie.rating %>" min="0" max="100">
+<label>Review</label>
+<input type="text" name="review" value="<%= movie.review %>">
