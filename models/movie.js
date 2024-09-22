@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const movieSchema = new mongoose.Schema({
+  imdbID: {
+    type: String,
+  },
   title: {
     type: String,
     required: true,
@@ -25,6 +28,22 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   review: {
+    type: String,
+  },
+  genre: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+  },
+  imdbRating: {
+    type: Number,
+  },
+  rated: {
+    type: String,
+  },
+  actors: {
     type: String,
   },
 });
