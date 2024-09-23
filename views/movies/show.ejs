@@ -4,17 +4,23 @@
 <br>
 <%= movie.release %>
 <br>
-<%= movie.description %>
+Plot: <%= movie.description %>
 <br>
-<%= movie.runtime %>
+Runtime: <%= movie.runtime %>
 <br>
-<%= movie.rating %> %
+Personal Rating: <%= movie.rating %>
 <br>
 <%= movie.review %>
 <br>
-<%= movie.actors %>
+<% actors.forEach(actor => { %>
+  <% movie.actors.forEach(act => {%>
+    <%if(actor._id.equals(act)) {%>
+      <a href="/"><%= actor.name %></a>
+    <%}%>
+  <%})%>
+<% })%>
 <br>
-<%= movie.imdbRating %>
+IMDb Rating: <%= movie.imdbRating %>
 <br>
 <%= movie.genre %>
 <br>

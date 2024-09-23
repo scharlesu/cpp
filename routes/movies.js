@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Movie = require("../models/movie");
-const mongoose = require("mongoose");
-const db = mongoose.connection;
+const Actor = require("../models/actor");
+const actor = require("../models/actor");
 
 router.get("/", async (req, res) => {
   let searchOptions = {};
@@ -24,7 +24,8 @@ router.get("/new", (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const movie = await Movie.findById(req.params.id).exec();
-    res.render("movies/show", { movie, movie });
+    const actors = await listActors();
+    res.render("movies/show", { movie, actors });
   } catch {
     res.redirect("/");
   }
@@ -45,6 +46,15 @@ router.post("/", async (req, res) => {
       return response.json();
     })
     .then((data) => {
+      let actors = data.Actors.split(", ");
+      let actorsArray = [];
+      actors.forEach((actor) => {
+        const act = new Actor({
+          name: actor,
+        });
+        const newActor = act.save();
+        actorsArray.push(act);
+      });
       const movie = new Movie({
         title: data.Title,
         description: data.Plot,
@@ -58,7 +68,7 @@ router.post("/", async (req, res) => {
         country: data.Country,
         imdbRating: data.imdbRating * 10,
         rated: data.Rated,
-        actors: data.Actors,
+        actors: actorsArray,
       });
       try {
         if (data.Response == "False") {
@@ -90,3 +100,8 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
+
+async function listActors() {
+  const actors = await Actor.find({}).exec();
+  return actors;
+}
