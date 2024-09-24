@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Movie = require("../models/movie");
+const Tvshow = require("../models/tvshow");
 const Actor = require("../models/actor");
 
 router.get("/", async (req, res) => {
@@ -9,29 +9,29 @@ router.get("/", async (req, res) => {
     searchOptions.title = new RegExp(req.query.title, "i");
   }
   try {
-    const movies = await Movie.find(searchOptions);
-    res.render("movies/index", { movies: movies, searchOptions: req.query });
+    const tvshows = await Tvshow.find(searchOptions);
+    res.render("tvshows/index", { tvshows: tvshows, searchOptions: req.query });
   } catch {
     res.redirect("/");
   }
 });
 
 router.get("/new", (req, res) => {
-  res.render("movies/new", { movie: new Movie() });
+  res.render("tvshows/new", { tvshow: new Tvshow() });
 });
 
 router.get("/:id", async (req, res) => {
   try {
-    const movie = await Movie.findById(req.params.id).exec();
+    const tvshow = await Tvshow.findById(req.params.id).exec();
     const actors = await listActors();
-    res.render("movies/show", { movie, actors });
+    res.render("tvshows/show", { tvshow, actors });
   } catch {
     res.redirect("/");
   }
 });
 
 router.post("/", async (req, res) => {
-  const movies = await Movie.find({});
+  const tvshows = await Tvshow.find({});
   fetch(
     "https://www.omdbapi.com/?apikey=" +
       process.env.OMDB_API_KEY +
@@ -62,8 +62,7 @@ router.post("/", async (req, res) => {
           const newActor = act.save();
         }
       }
-      console.log(actorsArray);
-      const movie = new Movie({
+      const tvshow = new Tvshow({
         title: data.Title,
         description: data.Plot,
         release: data.Released,
@@ -77,6 +76,8 @@ router.post("/", async (req, res) => {
         imdbRating: data.imdbRating * 10,
         rated: data.Rated,
         actors: actorsArray,
+        totalSeasons: data.totalSeasons,
+        seasonWatched: req.body.seasonWatched,
       });
       try {
         if (req.body.imdbID == "" || req.body.rating == "") {
@@ -85,19 +86,19 @@ router.post("/", async (req, res) => {
         if (data.Response == "False") {
           throw new Error(data.Error);
         }
-        if (data.Type != "movie") {
-          throw new Error("This IMDb ID is not for a movie.");
+        if (data.Type != "series") {
+          throw new Error("This IMDb ID is not for a series.");
         }
-        movies.forEach((mov) => {
-          if (mov.imdbID == movie.imdbID) {
-            throw new Error("Movie has already been added.");
+        tvshows.forEach((tv) => {
+          if (tv.imdbID == tvshow.imdbID) {
+            throw new Error("Serie has already been added.");
           }
         });
-        const newMovie = movie.save();
-        res.redirect("movies");
+        const newTvshow = tvshow.save();
+        res.redirect("tvshows");
       } catch (error) {
-        res.render("movies/new", {
-          movie: movie,
+        res.render("tvshows/new", {
+          tvshow: tvshow,
           errorMessage: error.message,
         });
       }

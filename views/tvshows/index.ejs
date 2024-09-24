@@ -1,0 +1,14 @@
+<h2>Search TV Shows</h2>
+<form action="/tvshows" methode="GET">
+  <label>Title</label>
+  <input type="text" name="title" value="<%= searchOptions.title %>">
+  <button type="submit">Search</button>
+</form>
+<br>
+<% tvshows.forEach(tvshow => { %> 
+<div>
+  <%= tvshow.title %>
+  <br>
+  <a href="tvshows/<%= tvshow.id %>""><img src="<%= tvshow.coverURL %>"></a>
+</div>
+<% }) %>

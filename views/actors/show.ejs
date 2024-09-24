@@ -6,3 +6,10 @@
     <a href="../movies/<%= movie.id %>""><img src="<%= movie.coverURL %>"></a>
   </div>
   <% }) %>
+<% tvshows.forEach(tvshow => { %> 
+  <div>
+    <%= tvshow.title %>
+    <br>
+    <a href="../tvshows/<%= tvshow.id %>""><img src="<%= tvshow.coverURL %>"></a>
+  </div>
+<% }) %>

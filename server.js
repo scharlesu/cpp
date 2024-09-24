@@ -9,6 +9,7 @@ const expressLayouts = require("express-ejs-layouts");
 const indexRouter = require("./routes/index");
 const movieRouter = require("./routes/movies");
 const actorRouter = require("./routes/actors");
+const tvshowRouter = require("./routes/tvshows");
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -27,5 +28,6 @@ db.once("open", () => console.log("Connected to Mongoose"));
 app.use("/", indexRouter);
 app.use("/movies", movieRouter);
 app.use("/actors", actorRouter);
+app.use("/tvshows", tvshowRouter);
 
 app.listen(process.env.PORT || 3000);

@@ -1,0 +1,33 @@
+<%= tvshow.title %>
+<br>
+<img src="<%= tvshow.coverURL %>">
+<br>
+<%= tvshow.release %>
+<br>
+Plot: <%= tvshow.description %>
+<br>
+Runtime: <%= tvshow.runtime %>
+<br>
+Personal Rating: <%= tvshow.rating %>
+<br>
+<%= tvshow.review %>
+<br>
+<% actors.forEach(actor => { %>
+  <% tvshow.actors.forEach(act => {%>
+    <%if(actor._id.equals(act)) {%>
+      <a href="../actors/<%=actor.id%>"><%= actor.name %></a>
+    <%}%>
+  <%})%>
+<% })%>
+<br>
+IMDb Rating: <%= tvshow.imdbRating %>
+<br>
+<%= tvshow.genre %>
+<br>
+<%= tvshow.rated %>
+<br>
+<%= tvshow.totalSeasons %>
+<br>
+<%= tvshow.seasonWatched %>
+<br>
+

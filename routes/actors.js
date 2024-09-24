@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Movie = require("../models/movie");
+const Tvshow = require("../models/tvshow");
 const Actor = require("../models/actor");
 
 router.get("/", async (req, res) => {
@@ -20,7 +21,9 @@ router.get("/:id", async (req, res) => {
   try {
     const actor = await Actor.findById(req.params.id).exec();
     const movies = await Movie.find({ actors: actor }).exec();
-    res.render("actors/show", { movies, actor });
+    const tvshows = await Tvshow.find({ actors: actor }).exec();
+
+    res.render("actors/show", { movies, actor, tvshows });
   } catch {
     res.redirect("/");
   }
