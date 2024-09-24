@@ -15,7 +15,7 @@ Personal Rating: <%= movie.rating %>
 <% actors.forEach(actor => { %>
   <% movie.actors.forEach(act => {%>
     <%if(actor._id.equals(act)) {%>
-      <a href="/"><%= actor.name %></a>
+      <a href="../actors/<%=actor.id%>"><%= actor.name %></a>
     <%}%>
   <%})%>
 <% })%>

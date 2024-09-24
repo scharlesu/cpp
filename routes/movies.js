@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Movie = require("../models/movie");
 const Actor = require("../models/actor");
-const actor = require("../models/actor");
 
 router.get("/", async (req, res) => {
   let searchOptions = {};
