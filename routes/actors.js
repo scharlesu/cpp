@@ -45,23 +45,16 @@ router.post("/", async (req, res) => {
       }
       return response.json();
     })
-    .then(async (data) => {
-      let existingActors = await listActors();
+    .then((data) => {
       let actors = data.Actors.split(", ");
       let actorsArray = [];
-      for (const actor of actors) {
-        let existingActor = await Actor.findOne({ name: actor }).exec();
+      actors.forEach((actor) => {
         const act = new Actor({
           name: actor,
         });
-        if (existingActor != null) {
-          actorsArray.push(existingActor);
-        } else {
-          actorsArray.push(act);
-          const newActor = act.save();
-        }
-      }
-      console.log(actorsArray);
+        const newActor = act.save();
+        actorsArray.push(act);
+      });
       const movie = new Movie({
         title: data.Title,
         description: data.Plot,
