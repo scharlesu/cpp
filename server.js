@@ -5,7 +5,19 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
+const i18next = require("i18next");
+const Backend = require("i18next-fs-backend");
+const middleware = require("i18next-http-middleware");
 
+i18next
+  .use(Backend)
+  .use(middleware.LanguageDetector)
+  .init({
+    fallbackLng: "en",
+    backend: {
+      loadPath: "./locales/{{lng}}/translation.json",
+    },
+  });
 const indexRouter = require("./routes/index");
 const movieRouter = require("./routes/movies");
 const actorRouter = require("./routes/actors");
@@ -18,6 +30,7 @@ app.use(expressLayouts);
 app.use(express.static("public"));
 app.use(express.urlencoded({ limit: "10mb", extended: false }));
 app.use(express.json());
+app.use(middleware.handle(i18next));
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE_URL);
