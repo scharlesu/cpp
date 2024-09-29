@@ -1,14 +1,14 @@
-<h2>Search Movies</h2>
+<h2 class="page-header">Search Movies</h2>
 <form action="/movies" methode="GET">
   <label>Title</label>
-  <input type="text" name="title" value="<%= searchOptions.title %>">
-  <button type="submit">Search</button>
+  <input type="text" name="title" value="<%= searchOptions.title %>" />
+  <button class="btn-primary" type="submit">Search</button>
 </form>
-<br>
-<% movies.forEach(movie => { %> 
+<br />
+<% movies.forEach(movie => { %>
 <div>
   <%= movie.title %>
-  <br>
-  <a href="movies/<%= movie.id %>""><img src="<%= movie.coverURL %>"></a>
+  <br />
+  <a href="movies/<%= movie.id %>"><img src="<%= movie.coverURL %>" /></a>
 </div>
 <% }) %>

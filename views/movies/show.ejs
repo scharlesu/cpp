@@ -1,31 +1,30 @@
-<%= movie.title %>
-<a href="/movies/<%= movie.id%>/edit"> Edit</a>
-<%- include('../partials/deleteForm', { url : `/movies/${movie.id}`}) %>
-<br>
-<img src="<%= movie.coverURL %>">
-<br>
-<%= movie.release %>
-<br>
-Plot: <%= movie.description %>
-<br>
-Runtime: <%= movie.runtime %>
-<br>
-Personal Rating: <%= movie.rating %>
-<br>
-<%= movie.review %>
-<br>
-<% actors.forEach(actor => { %>
-  <% movie.actors.forEach(act => {%>
-    <%if(actor._id.equals(act)) {%>
-      <a href="../actors/<%=actor.id%>"><%= actor.name %></a>
-    <%}%>
-  <%})%>
-<% })%>
-<br>
-IMDb Rating: <%= movie.imdbRating %>
-<br>
-<%= movie.genre %>
-<br>
-<%= movie.rated %>
-<br>
+<h2 class="page-header"><%= movie.title %></h2>
+<div class="btn-row">
+  <a class="btn btn-primary" href="/movies/<%= movie.id%>/edit"> Edit</a>
+  <%- include('../partials/deleteForm', { url : `/movies/${movie.id}`}) %>
+</div>
 
+<br />
+<img src="<%= movie.coverURL %>" />
+<br />
+<%= movie.release %>
+<br />
+Plot: <%= movie.description %>
+<br />
+Runtime: <%= movie.runtime %>
+<br />
+Personal Rating: <%= movie.rating %>
+<br />
+<%= movie.review %>
+<br />
+<% actors.forEach(actor => { %> <% movie.actors.forEach(act => {%>
+<%if(actor._id.equals(act)) {%>
+<a href="../actors/<%=actor.id%>"><%= actor.name %></a>
+<%}%> <%})%> <% })%>
+<br />
+IMDb Rating: <%= movie.imdbRating %>
+<br />
+<%= movie.genre %>
+<br />
+<%= movie.rated %>
+<br />

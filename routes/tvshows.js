@@ -89,6 +89,11 @@ router.post("/", async (req, res) => {
         if (data.Type != "series") {
           throw new Error("This IMDb ID is not for a series.");
         }
+        if (parseInt(data.totalSeasons) < parseInt(req.body.seasonWatched)) {
+          throw new Error(
+            `Please select a season equal or lower to the total seasons : ${data.totalSeasons}.`
+          );
+        }
         tvshows.forEach((tv) => {
           if (tv.imdbID == tvshow.imdbID) {
             throw new Error("Serie has already been added.");
@@ -176,6 +181,12 @@ router.put("/:id", async (req, res) => {
         }
         if (data.Type != "series") {
           throw new Error("This IMDb ID is not for a serie.");
+        }
+
+        if (parseInt(data.totalSeasons) < parseInt(req.body.seasonWatched)) {
+          throw new Error(
+            "Please select a season equal or lower to the total seasons."
+          );
         }
         await tvshow.save();
         res.redirect(`/tvshows/${tvshow.id}`);

@@ -1,35 +1,31 @@
-<a href="/tvshows/<%= tvshow.id%>/edit"> Edit</a>
+<h2 class="page-header"><%= tvshow.title %></h2>
+<a class="btn btn-primary" href="/tvshows/<%= tvshow.id%>/edit"> Edit</a>
 <%- include('../partials/deleteForm', { url : `/tvshows/${tvshow.id}`}) %>
-<%= tvshow.title %>
-<br>
-<img src="<%= tvshow.coverURL %>">
-<br>
+<br />
+<img src="<%= tvshow.coverURL %>" />
+<br />
 <%= tvshow.release %>
-<br>
+<br />
 Plot: <%= tvshow.description %>
-<br>
+<br />
 Runtime: <%= tvshow.runtime %>
-<br>
+<br />
 Personal Rating: <%= tvshow.rating %>
-<br>
+<br />
 <%= tvshow.review %>
-<br>
-<% actors.forEach(actor => { %>
-  <% tvshow.actors.forEach(act => {%>
-    <%if(actor._id.equals(act)) {%>
-      <a href="../actors/<%=actor.id%>"><%= actor.name %></a>
-    <%}%>
-  <%})%>
-<% })%>
-<br>
+<br />
+<% actors.forEach(actor => { %> <% tvshow.actors.forEach(act => {%>
+<%if(actor._id.equals(act)) {%>
+<a href="../actors/<%=actor.id%>"><%= actor.name %></a>
+<%}%> <%})%> <% })%>
+<br />
 IMDb Rating: <%= tvshow.imdbRating %>
-<br>
+<br />
 <%= tvshow.genre %>
-<br>
+<br />
 <%= tvshow.rated %>
-<br>
+<br />
 <%= tvshow.totalSeasons %>
-<br>
+<br />
 <%= tvshow.seasonWatched %>
-<br>
-
+<br />
