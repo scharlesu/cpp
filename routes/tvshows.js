@@ -95,7 +95,7 @@ router.post("/", async (req, res) => {
           }
         });
         const newTvshow = tvshow.save();
-        res.redirect("tvshows");
+        res.redirect(`/tvshows/${tvshow.id}`);
       } catch (error) {
         res.render("tvshows/new", {
           tvshow: tvshow,
@@ -106,6 +106,109 @@ router.post("/", async (req, res) => {
     .catch((error) => {
       console.error("Fetch error:", error);
     });
+});
+
+router.get("/:id/edit", async (req, res) => {
+  try {
+    const tvshow = await Tvshow.findById(req.params.id);
+    res.render("tvshows/edit", { tvshow: tvshow });
+  } catch {
+    res.render("/tvshows");
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const tvshow = await Tvshow.find({});
+  fetch(
+    "https://www.omdbapi.com/?apikey=" +
+      process.env.OMDB_API_KEY +
+      "&i=" +
+      req.body.imdbID
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response error");
+      }
+      return response.json();
+    })
+    .then(async (data) => {
+      let actors = [];
+      if (data.Actors != undefined) {
+        actors = data.Actors.split(", ");
+      }
+      let actorsArray = [];
+      for (const actor of actors) {
+        let existingActor = await Actor.findOne({ name: actor }).exec();
+        const act = new Actor({
+          name: actor,
+        });
+        if (existingActor != null) {
+          actorsArray.push(existingActor);
+        } else {
+          actorsArray.push(act);
+          const newActor = act.save();
+        }
+      }
+      let tvshow;
+      try {
+        tvshow = await Tvshow.findById(req.params.id);
+        tvshow.title = data.Title;
+        tvshow.description = data.Plot;
+        tvshow.release = data.Released;
+        tvshow.runtime = data.Runtime;
+        tvshow.coverURL = data.Poster;
+        tvshow.rating = req.body.rating;
+        tvshow.review = req.body.review;
+        tvshow.imdbID = data.imdbID;
+        tvshow.genre = data.Genre;
+        tvshow.country = data.Country;
+        tvshow.imdbRating = data.imdbRating * 10;
+        tvshow.rated = data.Rated;
+        tvshow.actors = actorsArray;
+        tvshow.totalSeasons = data.totalSeasons;
+        tvshow.seasonWatched = req.body.seasonWatched;
+
+        if (req.body.imdbID == "" || req.body.rating == "") {
+          throw new Error("Please fill the required fields.");
+        }
+        if (data.Response == "False") {
+          throw new Error(data.Error);
+        }
+        if (data.Type != "series") {
+          throw new Error("This IMDb ID is not for a serie.");
+        }
+        await tvshow.save();
+        res.redirect(`/tvshows/${tvshow.id}`);
+      } catch (error) {
+        if (tvshow == null) {
+          res.redirect("/");
+        } else {
+          res.render("tvshows/edit", {
+            tvshow: tvshow,
+            errorMessage: error.message,
+          });
+        }
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
+});
+
+router.delete("/:id", async (req, res) => {
+  let tvshow;
+  try {
+    tvshow = await Tvshow.findById(req.params.id);
+    await Tvshow.deleteOne({ title: tvshow.title }).exec();
+    res.redirect("/");
+  } catch (error) {
+    if (tvshow == null) {
+      res.redirect("/");
+    } else {
+      console.log(error.message);
+      res.redirect(`/tvshows/${tvshow.id}`);
+    }
+  }
 });
 
 module.exports = router;

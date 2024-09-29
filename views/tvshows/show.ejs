@@ -1,3 +1,5 @@
+<a href="/tvshows/<%= tvshow.id%>/edit"> Edit</a>
+<%- include('../partials/deleteForm', { url : `/tvshows/${tvshow.id}`}) %>
 <%= tvshow.title %>
 <br>
 <img src="<%= tvshow.coverURL %>">

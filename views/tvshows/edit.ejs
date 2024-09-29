@@ -1,0 +1,6 @@
+<h2>Edit Tv Show</h2>
+<form action="/tvshows/<%= tvshow.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <a href="/tvshows/<%= tvshow.id %>">Cancel</a>
+  <button type="submit">Update</button>
+</form>

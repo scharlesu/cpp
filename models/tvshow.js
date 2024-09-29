@@ -38,7 +38,7 @@ const tvshowSchema = new mongoose.Schema({
     type: String,
   },
   imdbRating: {
-    type: Number,
+    type: String,
   },
   rated: {
     type: String,

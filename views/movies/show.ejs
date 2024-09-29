@@ -1,4 +1,6 @@
 <%= movie.title %>
+<a href="/movies/<%= movie.id%>/edit"> Edit</a>
+<%- include('../partials/deleteForm', { url : `/movies/${movie.id}`}) %>
 <br>
 <img src="<%= movie.coverURL %>">
 <br>

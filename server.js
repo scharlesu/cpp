@@ -8,6 +8,7 @@ const expressLayouts = require("express-ejs-layouts");
 const i18next = require("i18next");
 const Backend = require("i18next-fs-backend");
 const middleware = require("i18next-http-middleware");
+const methodOverride = require("method-override");
 
 i18next
   .use(Backend)
@@ -27,6 +28,7 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout");
 app.use(expressLayouts);
+app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ limit: "10mb", extended: false }));
 app.use(express.json());
