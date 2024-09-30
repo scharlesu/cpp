@@ -5,10 +5,10 @@
   <button class="btn btn-primary" type="submit">Search</button>
 </form>
 <br>
-<% tvshows.forEach(tvshow => { %> 
-<div>
-  <%= tvshow.title %>
-  <br>
-  <a href="tvshows/<%= tvshow.id %>""><img src="<%= tvshow.coverURL %>"></a>
+<div class="show-all">
+  <% tvshows.forEach(tvshow => { %> 
+    <div>
+      <a href="tvshows/<%= tvshow.id %>""><img class="cover-img-all" src="<%= tvshow.coverURL %>"></a>
+    </div>
+    <% }) %>
 </div>
-<% }) %>

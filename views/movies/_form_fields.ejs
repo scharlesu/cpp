@@ -1,6 +1,24 @@
-<label for="imdbID">imdb ID</label>
-<input type="text" name="imdbID" value="<%= movie.imdbID %>">
-<label for="rating">Rating out of a 100</label>
-<input type="number" name="rating" value="<%= movie.rating %>" min="0" max="100">
-<label>Review</label>
-<input type="text" name="review" value="<%= movie.review %>">
+<input
+  class="input input-imdbid"
+  type="text"
+  name="imdbID"
+  value="<%= movie.imdbID %>"
+  placeholder="IMDb ID (e.g. tt0499549)"
+/>
+<input
+  class="input input-rating"
+  type="number"
+  name="rating"
+  value="<%= movie.rating %>"
+  min="0"
+  max="100"
+  placeholder="Rating (0-100)"
+/>
+<textarea
+  class="input input-review"
+  type="text"
+  name="review"
+  placeholder="Review (e.g. Great movie.)"
+>
+<%= movie.review %></textarea
+>

@@ -1,15 +1,14 @@
 <h2 class="page-header"><%= actor.name%></h2>
+<div class="show-all">
 <% movies.forEach(movie => { %> 
   <div>
-    <%= movie.title %>
-    <br>
-    <a href="../movies/<%= movie.id %>""><img src="<%= movie.coverURL %>"></a>
+    <a href="../movies/<%= movie.id %>""><img class="cover-img-all" src="<%= movie.coverURL %>"></a>
   </div>
   <% }) %>
+
 <% tvshows.forEach(tvshow => { %> 
   <div>
-    <%= tvshow.title %>
-    <br>
-    <a href="../tvshows/<%= tvshow.id %>""><img src="<%= tvshow.coverURL %>"></a>
+    <a href="../tvshows/<%= tvshow.id %>""><img class="cover-img-all" src="<%= tvshow.coverURL %>"></a>
   </div>
 <% }) %>
+</div>

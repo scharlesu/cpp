@@ -1,30 +1,44 @@
-<h2 class="page-header"><%= movie.title %></h2>
 <div class="btn-row">
+  <h2 class="page-header"><%= movie.title %></h2>
   <a class="btn btn-primary" href="/movies/<%= movie.id%>/edit"> Edit</a>
   <%- include('../partials/deleteForm', { url : `/movies/${movie.id}`}) %>
 </div>
-
-<br />
-<img src="<%= movie.coverURL %>" />
-<br />
-<%= movie.release %>
-<br />
-Plot: <%= movie.description %>
-<br />
 Runtime: <%= movie.runtime %>
 <br />
-Personal Rating: <%= movie.rating %>
-<br />
-<%= movie.review %>
-<br />
-<% actors.forEach(actor => { %> <% movie.actors.forEach(act => {%>
-<%if(actor._id.equals(act)) {%>
-<a href="../actors/<%=actor.id%>"><%= actor.name %></a>
-<%}%> <%})%> <% })%>
-<br />
-IMDb Rating: <%= movie.imdbRating %>
-<br />
-<%= movie.genre %>
-<br />
-<%= movie.rated %>
-<br />
+<div>
+  <div class="cover-description">
+    <img class="cover-img-show" src="<%= movie.coverURL %>" />
+    <div class="description">
+      <div class="ratings-b">
+        <%if(movie.rating < 50){%>
+        <div class="rating-red">My Rating: <%= movie.rating/10 %> ☆</div>
+        <%}else{%>
+        <div class="rating-green">My Rating: <%= movie.rating/10%> ☆</div>
+        <%}%>
+      </div>
+      <div class="ratings-a">
+        <%if(movie.imdbRating < 50){%>
+        <div class="rating-red">IMDb Rating: <%= movie.imdbRating/10 %> ☆</div>
+        <%}else{%>
+        <div class="rating-green">IMDb Rating: <%= movie.imdbRating/10%> ☆</div>
+        <%}%>
+      </div>
+      <br />
+      <div>
+        <h3>Plot:</h3>
+        <%= movie.description %> <br />
+        <h3>Review:</h3>
+        <%= movie.review %>
+      </div>
+    </div>
+  </div>
+  <div class="info"><%= movie.release %></div>
+  <div class="info">
+    <% actors.forEach(actor => { %> <% movie.actors.forEach(act => {%>
+    <%if(actor._id.equals(act)) {%>
+    <a class="actor-name" href="../actors/<%=actor.id%>"><%= actor.name %></a>
+    <%}%> <%})%> <% })%>
+  </div>
+  <div class="info"><%= movie.genre %></div>
+  <div class="info"><%= movie.rated %></div>
+</div>

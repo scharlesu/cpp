@@ -1,5 +1,5 @@
-<h2 class="page-header">New movie</h2>
-<form action="/movies" method="POST">
+<h2 class="page-header">Add movie</h2>
+<form action="/movies" method="POST" id="<%=movie.id%>">
   <%- include('_form_fields') %>
   <div class="btn-row">
     <button class="btn btn-primary" type="submit">Create</button>

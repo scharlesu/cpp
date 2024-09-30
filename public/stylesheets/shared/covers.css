@@ -1,0 +1,26 @@
+.cover-img-all {
+  border-radius: 5%;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.cover-img-all:hover {
+  filter: brightness(120%);
+}
+
+.show-all {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.cover-img-show {
+  border-radius: 10px;
+  margin-right: 2rem;
+  width: 400px/0.2;
+  height: 600px/0.2;
+  object-fit: cover;
+}

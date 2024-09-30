@@ -1,14 +1,21 @@
 <h2 class="page-header">Search Movies</h2>
 <form action="/movies" methode="GET">
-  <label>Title</label>
-  <input type="text" name="title" value="<%= searchOptions.title %>" />
-  <button class="btn-primary" type="submit">Search</button>
+  <input
+    class="input search-input"
+    type="text"
+    name="title"
+    value="<%= searchOptions.title %>"
+    placeholder="Title (e.g. Avatar)"
+  />
+  <button class="btn-primary search-btn" type="submit">Search</button>
 </form>
 <br />
-<% movies.forEach(movie => { %>
-<div>
-  <%= movie.title %>
-  <br />
-  <a href="movies/<%= movie.id %>"><img src="<%= movie.coverURL %>" /></a>
+<div class="show-all">
+  <% movies.forEach(movie => { %>
+  <div>
+    <a href="movies/<%= movie.id %>">
+      <img class="cover-img-all" src="<%= movie.coverURL %>" />
+    </a>
+  </div>
+  <% }) %>
 </div>
-<% }) %>
