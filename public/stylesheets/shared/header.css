@@ -38,3 +38,12 @@
 .header-title:hover {
   color: white;
 }
+
+.logo {
+  width: 120px;
+  filter: brightness(90%);
+}
+
+.logo:hover {
+  filter: brightness(120%);
+}

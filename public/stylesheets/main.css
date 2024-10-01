@@ -39,10 +39,6 @@ body {
   font-weight: 500;
 }
 
-.logo {
-  width: 200px;
-}
-
 .actor-name {
   color: var(--color-text-light);
   text-decoration: none;
@@ -140,4 +136,11 @@ body {
 
 .show-all-actors > * {
   margin: 0.5rem;
+}
+
+.rand-show {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
 }

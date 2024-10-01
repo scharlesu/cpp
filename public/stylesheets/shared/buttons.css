@@ -59,3 +59,23 @@
 .search-btn {
   border-radius: 5px;
 }
+
+.rand-show-btn {
+  width: 5rem;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  border: solid;
+  border-color: var(--color-btn-primary-background-dark);
+  background-color: var(--color-btn-primary-background);
+}
+.rand-show-btn:hover {
+  filter: brightness(120%);
+}
+
+.rand-show-btn > * {
+  width: 5rem;
+  justify-content: center;
+}

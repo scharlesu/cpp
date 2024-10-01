@@ -24,3 +24,9 @@
   height: 600px/0.2;
   object-fit: cover;
 }
+.cover-img {
+  border-radius: 10px;
+  margin-right: 2rem;
+  width: 300px;
+  height: 450px;
+}

@@ -1,1 +1,27 @@
-<%= message %>
+<div style="display: center">
+  <div class="rand-show"><h3><%= message %></h3></div>
+
+  <div class="rand-show">
+    <%let randNb = Math.floor(Math.random() * 10)%> <%let randNbMovie =
+    Math.floor(Math.random()* movies.length)%> <%let randNbShow =
+    Math.floor(Math.random()* tvshows.length)%> <%console.log(randNb)%>
+    <div>
+      <% if(randNb<= 5){ %>
+      <a href="movies/<%= movies[randNbMovie].id %>"
+        ><img class="cover-img" src="<%= movies[randNbMovie].coverURL %>"
+      /></a>
+      <% }else{%>
+      <a href="tvshows/<%= tvshows[randNbShow].id %>"
+        ><img class="cover-img" src="<%= tvshows[randNbShow].coverURL %>"
+      /></a>
+      <% }%>
+    </div>
+  </div>
+  <div class="rand-show">
+    <div>
+      <a href="/"
+        ><img class="rand-show-btn" src="images/questionmark.png" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
