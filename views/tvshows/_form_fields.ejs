@@ -1,9 +1,13 @@
-<label for="imdbID">imdb ID</label>
-<input type="text" name="imdbID" value="<%= tvshow.imdbID %>">
-<label for="rating">Rating out of a 100</label>
-<input type="number" name="rating" value="<%= tvshow.rating %>" min="0" max="100">
-<label>Review</label>
-<input type="text" name="review" value="<%= tvshow.review %>">
-<label>Seasons watched</label> 
-<input type="text" name="seasonWatched" value="<%= tvshow.seasonWatched %>">
+
+<input class="input input-imdbid" type="text" name="imdbID" value="<%= tvshow.imdbID %>" placeholder="IMDb ID (e.g tt0273855)" required="true">
+<input class="input input-seasons" type="text" name="seasonWatched" value="<%= tvshow.seasonWatched %>" placeholder="No. of season(s) watched" required="true">
+<input class="input input-rating" type="number" name="rating" value="<%= tvshow.rating %>" min="0" max="100"  placeholder="Rating (0-100) " required="true">
+<textarea
+  class="input input-review"
+  type="text"
+  name="review"
+  placeholder="Review (e.g. Great movie.)"
+>
+<%= tvshow.review %></textarea
+
 

@@ -1,7 +1,8 @@
-<h2 class="page-header">New Tv Show</h2>
+<h2 class="page-header">Add TV Show</h2>
 <form action="/tvshows" method="POST">
   <%- include('_form_fields') %>
-
-  <button class="btn btn-primary" type="submit">Create</button>
-  <a class="btn btn-primary" href="/tvshows">Cancel</a>
+  <div class="btn-row">
+    <button class="btn btn-primary" type="submit">Create</button>
+    <a class="btn btn-primary" href="/tvshows">Cancel</a>
+  </div>
 </form>

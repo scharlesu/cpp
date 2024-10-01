@@ -1,13 +1,16 @@
 <h2 class="page-header">Search Actors</h2>
 <form action="/actors" methode="GET">
-  <label>Name</label>
-  <input type="text" name="name" value="<%= searchOptions.name %>" />
-  <button class="btn btn-primary" type="submit">Search</button>
+  <input
+    type="text"
+    name="name"
+    value="<%= searchOptions.name %>"
+    placeholder="Name (e.g. Robert Downey Jr.)"
+    class="input search-input"
+  />
+  <button class="btn-primary search-btn" type="submit">Search</button>
 </form>
-<br />
-<% actors.forEach(actor => { %>
-<div>
-  <br />
+<div class="show-all-actors">
+  <% actors.forEach(actor => { %>
   <a class="actor-name" href="actors/<%= actor.id %>"><%= actor.name %></a>
+  <% }) %>
 </div>
-<% }) %>

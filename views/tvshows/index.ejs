@@ -1,8 +1,7 @@
 <h2 class="page-header">Search TV Shows</h2>
 <form action="/tvshows" methode="GET">
-  <label>Title</label>
-  <input type="text" name="title" value="<%= searchOptions.title %>">
-  <button class="btn btn-primary" type="submit">Search</button>
+  <input type="text" name="title" value="<%= searchOptions.title %>" placeholder="Title (e.g. My Wife and Kids)" class="input search-input">
+  <button class="btn-primary search-btn" type="submit">Search</button>
 </form>
 <br>
 <div class="show-all">

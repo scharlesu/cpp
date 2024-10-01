@@ -1,31 +1,48 @@
-<h2 class="page-header"><%= tvshow.title %></h2>
-<a class="btn btn-primary" href="/tvshows/<%= tvshow.id%>/edit"> Edit</a>
-<%- include('../partials/deleteForm', { url : `/tvshows/${tvshow.id}`}) %>
-<br />
-<img src="<%= tvshow.coverURL %>" />
-<br />
-<%= tvshow.release %>
-<br />
-Plot: <%= tvshow.description %>
-<br />
+<div class="btn-row">
+  <h2 class="page-header"><%= tvshow.title %></h2>
+  <a class="btn btn-primary" href="/tvshows/<%= tvshow.id%>/edit"> Edit</a>
+  <%- include('../partials/deleteForm', { url : `/tvshows/${tvshow.id}`}) %>
+</div>
 Runtime: <%= tvshow.runtime %>
 <br />
-Personal Rating: <%= tvshow.rating %>
-<br />
-<%= tvshow.review %>
-<br />
-<% actors.forEach(actor => { %> <% tvshow.actors.forEach(act => {%>
-<%if(actor._id.equals(act)) {%>
-<a href="../actors/<%=actor.id%>"><%= actor.name %></a>
-<%}%> <%})%> <% })%>
-<br />
-IMDb Rating: <%= tvshow.imdbRating %>
-<br />
-<%= tvshow.genre %>
-<br />
-<%= tvshow.rated %>
-<br />
-<%= tvshow.totalSeasons %>
-<br />
-<%= tvshow.seasonWatched %>
-<br />
+<div>
+  <div class="cover-description">
+    <img class="cover-img-show" src="<%= tvshow.coverURL %>" />
+    <div class="description">
+      <div class="ratings-b">
+        <%if(tvshow.rating < 50){%>
+        <div class="rating-red">My Rating: <%= tvshow.rating/10 %> ☆</div>
+        <%}else{%>
+        <div class="rating-green">My Rating: <%= tvshow.rating/10%> ☆</div>
+        <%}%>
+      </div>
+      <div class="ratings-a">
+        <%if(tvshow.imdbRating < 50){%>
+        <div class="rating-red">IMDb Rating: <%= tvshow.imdbRating/10 %> ☆</div>
+        <%}else{%>
+        <div class="rating-green">
+          IMDb Rating: <%= tvshow.imdbRating/10%> ☆
+        </div>
+        <%}%>
+      </div>
+      <br />
+      <div>
+        <h3>Plot:</h3>
+        <%= tvshow.description %> <br />
+        <h3>Review:</h3>
+        <%= tvshow.review %>
+        <h3>Watched</h3>
+        <%= tvshow.seasonWatched %> out of <%= tvshow.totalSeasons %> seasons
+      </div>
+    </div>
+  </div>
+  <div class="info"><%= tvshow.release %></div>
+  <div class="info">
+    <% actors.forEach(actor => { %> <% tvshow.actors.forEach(act => {%>
+    <%if(actor._id.equals(act)) {%>
+    <a class="actor-name" href="../actors/<%=actor.id%>"><%= actor.name %></a>
+    <%}%> <%})%> <% })%>
+  </div>
+  <div class="info"><%= tvshow.genre %></div>
+  <div class="info"><%= tvshow.rated %></div>
+</div>

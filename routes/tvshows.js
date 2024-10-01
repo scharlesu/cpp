@@ -80,7 +80,11 @@ router.post("/", async (req, res) => {
         seasonWatched: req.body.seasonWatched,
       });
       try {
-        if (req.body.imdbID == "" || req.body.rating == "") {
+        if (
+          req.body.imdbID == "" ||
+          req.body.rating == "" ||
+          req.body.seasonWatched == ""
+        ) {
           throw new Error("Please fill the required fields.");
         }
         if (data.Response == "False") {
@@ -173,7 +177,11 @@ router.put("/:id", async (req, res) => {
         tvshow.totalSeasons = data.totalSeasons;
         tvshow.seasonWatched = req.body.seasonWatched;
 
-        if (req.body.imdbID == "" || req.body.rating == "") {
+        if (
+          req.body.imdbID == "" ||
+          req.body.rating == "" ||
+          req.body.seasonWatched == ""
+        ) {
           throw new Error("Please fill the required fields.");
         }
         if (data.Response == "False") {

@@ -1,6 +1,8 @@
-<h2 class="page-header">Edit Tv Show</h2>
+<h2 class="page-header">Edit TV Show</h2>
 <form action="/tvshows/<%= tvshow.id %>?_method=PUT" method="POST">
   <%- include('_form_fields') %>
-  <button class="btn btn-primary" type="submit">Update</button>
-  <a class="btn btn-primary" href="/tvshows/<%= tvshow.id %>">Cancel</a>
+  <div class="btn-row">
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn btn-primary" href="/tvshows/<%= tvshow.id %>">Cancel</a>
+  </div>
 </form>
