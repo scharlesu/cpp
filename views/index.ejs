@@ -1,12 +1,13 @@
 <div style="display: center">
   <div class="rand-show"><h3><%= message %></h3></div>
-
+  <% if(movies.length > 0 || tvshows.length > 0 ){ %>
   <div class="rand-show">
-    <%let randNb = Math.floor(Math.random() * 10)%> <%let randNbMovie =
+    <%let randNb = Math.floor(Math.random() * 10)%> <% if (movies.length == 0) {
+    randNb = 6 }else if(tvshows.length == 0){ randNb = 1 }%> <%let randNbMovie =
     Math.floor(Math.random()* movies.length)%> <%let randNbShow =
-    Math.floor(Math.random()* tvshows.length)%> <%console.log(randNb)%>
+    Math.floor(Math.random()* tvshows.length)%>
     <div>
-      <% if(randNb<= 5){ %>
+      <% if(randNb <= 5){ %>
       <a href="movies/<%= movies[randNbMovie].id %>"
         ><img class="cover-img" src="<%= movies[randNbMovie].coverURL %>"
       /></a>
@@ -14,9 +15,19 @@
       <a href="tvshows/<%= tvshows[randNbShow].id %>"
         ><img class="cover-img" src="<%= tvshows[randNbShow].coverURL %>"
       /></a>
-      <% }%>
+      <%}%>
     </div>
   </div>
+  <% }else{%>
+  <div class="rand-show">
+    <h3>Not enough Movies or Series in database.</h3>
+  </div>
+  <div class="btn-row rand-show">
+    <a class="btn btn-primary" href="movies/new">Add Movie</a>
+    <a class="btn btn-primary" href="tvshows/new">Add TV show</a>
+  </div>
+
+  <% } %>
   <div class="rand-show">
     <div>
       <a href="/"
