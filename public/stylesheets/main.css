@@ -45,7 +45,7 @@ body {
   border-radius: 5px;
   background-color: var(--color-background-dark);
   padding: 5px;
-  width: 10rem;
+  width: 15rem;
   height: 2rem;
 }
 
@@ -144,4 +144,3 @@ body {
   justify-content: center;
   padding: 1rem;
 }
-
